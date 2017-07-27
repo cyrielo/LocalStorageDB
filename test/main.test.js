@@ -21,7 +21,7 @@ describe('It should be able to create a datastore', () => {
 		store.create('users', users);
 		store.create('users', { "name": "Mary Doe", "email": "may@doe.com" });
 		store.create('admin', {'name': 'admin', "email":'admin@system.com'});
-		store.create('admin', {'name': 'super-admin', "email":'super-admin@system.com'});
+		store.create('admin', {'name': 'super..admin', "email":'super.admin@system.com'});
 		let items = JSON.parse(window.localStorage.getItem('documents'))['users'];
 		let adminItems = JSON.parse(window.localStorage.getItem('documents'))['admin'];
 
@@ -39,7 +39,23 @@ describe('It should be able to create a datastore', () => {
 		expect(store.get()).to.have.property('admin');
 	});
 
+	it('should be able to update existing data', () => {
+		let newAdminUser = {"name": "the-super-admin", "email": "super-admin@system.com"};
+		store.update(newAdminUser, "admin", 1)
+		expect(store.get('admin', 1)).to.deep.equal(newAdminUser);
+		store.update(newAdminUser, 'admin' );
+		expect(store.get('admin')).to.be.an('object');
+	});
 
+	it('should be able to delete an item', () => {
+		store.delete('admin');
+		expect(store.get('admin')).to.be.undefined;
+		store.delete('users', 1);
+		expect(store.get('users')).to.have.lengthOf(2);
+		store.delete('users', 1);
+		expect(store.get('users')).to.have.lengthOf(1);
+
+	});
 
 });
 
