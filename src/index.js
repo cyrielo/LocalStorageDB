@@ -67,4 +67,4 @@ class LocalStorageDB {
 	}
 }
 
-
+export default LocalStorageDB;
