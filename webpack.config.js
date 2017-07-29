@@ -1,29 +1,27 @@
-const path  = require('path');
+const path = require('path');
 const webpack = require('webpack');
-const entryDir = path.resolve(__dirname, "src");
-const outputDir = path.resolve(__dirname, "dist")
+const entryDir = path.resolve(__dirname, 'src');
+const outputDir = path.resolve(__dirname, 'dist');
 
 const config = {
-	devtool: 'sourcemap',
+  devtool: 'sourcemap',
+  entry: entryDir + '/index.js',
+  output: {
+    path: outputDir,
+    filename: 'localStorageDB.min.js'
+  },
 
-	entry: entryDir + '/index.js',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: entryDir,
+        loader: ['babel-loader']
+      }
+    ]
+  },
 
-	output: {
-		path: outputDir,
-		filename: 'localStorageDB.min.js'
-	},
-
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				include: entryDir,
-				loader: ['babel-loader']
-			}
-		]
-	},
-
-	plugins: [
+  plugins: [
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {
