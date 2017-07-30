@@ -1,6 +1,9 @@
 import chai from 'chai';
+import nodeLocalstorage from 'node-localstorage';
 import LocalStorageDB from '../src';
 
+const LocalStorage = nodeLocalstorage.LocalStorage;
+const localStorage = new LocalStorage('./.local-storage');
 const expect = chai.expect;
 const store = new LocalStorageDB('documents');
 
@@ -13,30 +16,30 @@ const users = [{
 }];
 
 after(() => {
-  window.localStorage.clear();
+  localStorage.clear();
 });
 
 describe('Creating data', () => {
   it('should ensure a localStorage item was created after instantiation', () => {
-    expect(window.localStorage.getItem('documents')).to.be.a('string');
+    expect(localStorage.getItem('documents')).to.be.a('string');
   });
 
   it('should be able to save an array of items at once', () => {
     store.create('users', users);
-    const items = JSON.parse(window.localStorage.getItem('documents')).users;
+    const items = JSON.parse(localStorage.getItem('documents')).users;
     expect(items).to.have.lengthOf(2);
   });
 
   it('should be able to append a single object to existing collection', () => {
     store.create('users', { name: 'Mary Doe', email: 'may@doe.com' });
-    const items = JSON.parse(window.localStorage.getItem('documents')).users;
+    const items = JSON.parse(localStorage.getItem('documents')).users;
     expect(items).to.have.lengthOf(3);
   });
 
   it('should generate a new collection for items with the same keys', () => {
     store.create('admin', { name: 'admin', email: 'admin@system.com' });
     store.create('admin', { name: 'super..admin', email: 'super.admin@system.com' });
-    const adminItems = JSON.parse(window.localStorage.getItem('documents')).admin;
+    const adminItems = JSON.parse(localStorage.getItem('documents')).admin;
     expect(adminItems).to.be.an.instanceof(Array);
     expect(adminItems).to.have.lengthOf(2);
   });
