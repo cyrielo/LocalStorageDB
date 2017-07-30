@@ -10,7 +10,13 @@ class LocalStorageDB {
    */
   constructor(key) {
     this.STORE_KEY = key;
-    this.store = window.localStorage;
+    if (typeof localStorage === 'undefined' || localStorage === null) {
+      const LocalStorage = require('node-localstorage').LocalStorage;
+      this.store = new LocalStorage('./.local-storage');
+    } else {
+      this.store = window.localStorage;
+    }
+
     const isStorageCreated = this.store.getItem(this.STORE_KEY);
     if (!isStorageCreated) {
       this.store.setItem(this.STORE_KEY, JSON.stringify({}));
