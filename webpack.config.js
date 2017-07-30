@@ -9,7 +9,8 @@ const config = {
   entry: entryDir + '/index.js',
   output: {
     path: outputDir,
-    filename: 'localStorageDB.min.js'
+    filename: 'localStorageDB.min.js',
+    libraryTarget: 'commonjs'
   },
 
   module: {
