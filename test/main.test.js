@@ -1,9 +1,6 @@
 import chai from 'chai';
-import nodeLocalstorage from 'node-localstorage';
 import LocalStorageDB from '../src';
 
-const LocalStorage = nodeLocalstorage.LocalStorage;
-const localStorage = new LocalStorage('./.local-storage');
 const expect = chai.expect;
 const store = new LocalStorageDB('documents');
 
