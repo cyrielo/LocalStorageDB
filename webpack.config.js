@@ -6,11 +6,10 @@ const outputDir = path.resolve(__dirname, 'dist');
 
 const config = {
   devtool: 'sourcemap',
-  entry: entryDir + '/index.js',
+  entry: `${entryDir}/index.js`,
   output: {
     path: outputDir,
-    filename: 'localStorageDB.min.js',
-    libraryTarget: 'commonjs'
+    filename: 'localStorageDB.min.js'
   },
 
   module: {
