@@ -1,0 +1,23 @@
+{
+  "name": "local-storage-db",
+  "description": "A minimal NoSql data storage for web application using browser LocalStorage API",
+  "main": "dist/localStorageDB.min.js",
+  "authors": [
+    "Cyril Ologho <cyrielo911@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "local-storage",
+    "node-localstorage",
+    "localstorage",
+    "minimal-localstorage"
+  ],
+  "homepage": "https://github.com/cyrielo/LocalStorageDB.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
