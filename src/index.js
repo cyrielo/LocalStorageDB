@@ -9,18 +9,11 @@ class LocalStorageDB {
    * @desc constructor to create the storage item
    */
   constructor(key) {
-    if(!key) {
+    if (!key) {
       throw new Error('No parameter key passed to constructor. Expected String but got undefined');
-      return;
     }
     this.STORE_KEY = key;
-    if (typeof localStorage === 'undefined' || localStorage === null) {
-      const LocalStorage = require('node-localstorage').LocalStorage;
-      this.store = new LocalStorage('./.local-storage');
-    } else {
-      this.store = window.localStorage;
-    }
-
+    this.store = window.localStorage;
     const isStorageCreated = this.store.getItem(this.STORE_KEY);
     if (!isStorageCreated) {
       this.store.setItem(this.STORE_KEY, JSON.stringify({}));
@@ -103,4 +96,5 @@ class LocalStorageDB {
   }
 }
 
-module.exports = LocalStorageDB;
+window.LocalStorageDB = LocalStorageDB;
+export default LocalStorageDB;

@@ -1,5 +1,5 @@
 {
-  "name": "localstorage.js",
+  "name": "localstorage-db",
   "version": "1.0.0",
   "description": "A minimal NoSql data storage for web application using browser LocalStorage API",
   "main": "src/index.js",
