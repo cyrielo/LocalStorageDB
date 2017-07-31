@@ -83,8 +83,11 @@ class LocalStorageDB {
    * @return {Boolean} return true when item is successfully removed
    */
   remove(key, pos = null) {
-    const storeData = this.get();
-    if (!pos) {
+    let storeData = this.get();
+    if (!key) {
+      storeData = {};
+    }
+    if (pos === null) {
       delete storeData[key];
     } else if (storeData[key] instanceof Array) {
       storeData[key].splice(pos, 1);
