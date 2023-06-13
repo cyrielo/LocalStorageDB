@@ -3,7 +3,7 @@
   "description": "A minimal NoSql data storage for web application using browser LocalStorage API",
   "main": "dist/localStorageDB.min.js",
   "authors": [
-    "Cyril Ologho <cyrielo911@gmail.com>"
+    "Cyril"
   ],
   "license": "MIT",
   "keywords": [
